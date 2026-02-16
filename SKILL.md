@@ -92,4 +92,4 @@ When the project has `docs/agent-ui-structure-behavior-guidelines.md` with **§8
 
 Full guides and checklists: [agent-ui-structure-behavior-guidelines](docs/agent-ui-structure-behavior-guidelines.md), [application-development-guidelines](docs/application-development-guidelines.md), [react-shadcn-ui-7layers](docs/react-shadcn-ui-7layers.md) (React/shadcn + 7 layers), [accessibility](docs/accessibility.md), [layer-1-2-3-guide](docs/layer-1-2-3-guide.md), [ui-7-layers](docs/ui-7-layers.md), [agents-application-project](docs/agents-application-project.md), [stable-app-checklist](docs/stable-app-checklist.md). Research (why/when/alternatives): [layout-research](docs/layout-research.md), [accessibility-research](docs/accessibility-research.md), [responsive-research](docs/responsive-research.md), [theming-research](docs/theming-research.md), [performance-research](docs/performance-research.md), [forms-research](docs/forms-research.md), [react-shadcn-research](docs/react-shadcn-research.md). Load by scope to save tokens.
 
-Install: [skills.sh](https://skills.sh/) — `npx skillsadd barocss/baro7`
+Install: [skills.sh](https://skills.sh/) — `npx skills add barocss/baro7`
