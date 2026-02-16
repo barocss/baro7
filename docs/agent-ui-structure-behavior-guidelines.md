@@ -1,6 +1,6 @@
 # UI Structure and Behavior Guidelines
 
-**Any AI agent** that edits frontend, screen, or layout files in this repo should follow this document. (Installable as the **baro7** skill from [skills.sh](https://skills.sh/); see root [SKILL.md](../SKILL.md).)
+**Any AI agent** that edits frontend, screen, or layout files in this repo should follow this document. Purpose: UI that does not break when content changes; use with SKILL.md for token-efficient context. (Installable as the **baro7** skill from [skills.sh](https://skills.sh/); see root [SKILL.md](../SKILL.md).)
 
 ---
 
@@ -54,12 +54,20 @@
 - **Fill**: Filling region needs `flex-1` and in flex context `min-h-0`.
 - **Do not**: `100vh` / `calc(100vh-...)` for content height.
 
+**Why and alternatives**: This is the default for app shells with an internal scroll area; it fixes flex + overflow behavior and avoids 100vh pitfalls. For the technical reason and when to use other approaches (Grid, dvh, etc.), see [layout-research.md](layout-research.md).
+
 ---
 
-## 7. Project-specific (fill in)
+## 7. Accessibility
+
+When adding or changing UI (forms, buttons, images, structure), follow [accessibility.md](accessibility.md) so the app stays accessible: labels, semantics, keyboard/focus, and WCAG-aligned checklist.
+
+---
+
+## 8. Project-specific (fill in)
 
 - **Layout primitives**: (e.g. `src/components/layout/TabContentLayout.tsx`, `ScrollRegion.tsx` — list paths and purpose.)
 - **Screen template**: (e.g. `src/tabs/_TabTemplate.tsx` — path to copy for new screens.)
 - **Layer 1–2 scope**: (e.g. `App.tsx` shell and tab wrapper; each tab’s top-level wrapper and sidebar/main structure — list files or roles.)
 
-After filling this section, this doc is the single source for UI structure/behavior in this project.
+After filling this section, this doc is the single source for UI structure/behavior in this project. For accessibility, see [accessibility.md](accessibility.md). See also: [responsive-research.md](responsive-research.md) (breakpoints, container queries).

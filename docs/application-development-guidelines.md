@@ -56,8 +56,51 @@ If the request is “add one button” or “bind field”, change **UI (Layer 3
 
 ---
 
-## 6. Environment and security
+## 6. Logging and error handling
+
+- **Structured logging**: Include request id (or correlation id), log level, and context (e.g. route, user id when safe). Use a consistent format (JSON or key-value) so logs are searchable and parseable.
+- **Never log sensitive data**: Do not log passwords, tokens, API keys, full PII (e.g. credit cards), or anything that could expose user or system secrets. Redact or omit.
+- **User vs server messages**: User-facing error messages must be generic and safe (e.g. "Something went wrong. Please try again."). Do not expose stack traces, internal paths, or DB details to the client. Detailed errors belong in server logs and monitoring only.
+- **Frontend**: Use error boundaries (e.g. React `ErrorBoundary`) to catch render errors and show fallback UI. For async failures (fetch, mutations), show retry or recovery guidance where appropriate.
+- **Checklist**: (1) New API/logic logs with request id and level. (2) No secrets in logs or client responses. (3) User sees safe messages; details only in logs. (4) Critical UI paths have error boundaries or equivalent.
+
+---
+
+## 7. Environment and security
 
 - **Environment variables**: Keep secrets, API keys, DB URL, etc. in env vars, not in code. Document required keys in `.env.example`; keep real values in `.env` (excluded from git).
 - **Client**: Do not read server-only env in client code; keep sensitive values server-side.
 - **CORS and headers**: Keep the project’s CORS and security header setup; change only when a new domain/path is needed and document it.
+
+- **Security (hardening)**:
+  - **Input validation**: Already required in §2 Backend/API; validate and escape all inputs; never trust client data.
+  - **Auth and permissions**: Log auth failures, permission changes, and sensitive admin actions (no secrets in logs). Protect routes and check permissions per project approach.
+  - **HTTPS and headers**: Enforce HTTPS in production; use HSTS and security headers (e.g. CSP, X-Frame-Options) per project or platform.
+  - **Public APIs**: Consider rate limiting (return 429, `Retry-After`, and optional `X-RateLimit-*` headers) to prevent abuse.
+  - **Checklist**: See [OWASP Top 10](https://owasp.org/www-project-top-ten/) and project security policy; when adding auth or new endpoints, ensure validation, logging, and headers are in place.
+
+---
+
+## 8. CI/CD and deploy
+
+- **On PR or push**: Run lint, type-check, and tests (unit and, if applicable, E2E) in CI. Do not merge if CI fails.
+- **On merge to main (or production branch)**: Use the project’s build and deploy pipeline (e.g. `.github/workflows/`, Vercel, or other). Document the workflow and any manual steps in README or §7.
+- **Rollback**: Document or automate how to rollback a bad deploy. Keep §7 and README updated with run/test/deploy commands and paths so agents and humans use the same source.
+
+---
+
+## 9. Performance
+
+- **Core Web Vitals**: Consider LCP (Largest Contentful Paint), INP (Interaction to Next Paint), and CLS (Cumulative Layout Shift). When adding features that affect them (e.g. large assets, layout shifts), measure and optimize if the project has performance targets or a budget.
+- **Loading**: Use lazy loading for below-the-fold or heavy components and images where appropriate. Prefer code-splitting and dynamic import for large features.
+- **Caching and assets**: Follow project patterns for caching (HTTP cache, client cache, or framework defaults). Optimize images and bundles (e.g. compression, modern formats) per project tooling.
+- **Checklist**: (1) New routes or heavy UI do not regress LCP/INP/CLS without a reason. (2) Large assets are lazy-loaded or optimized. (3) If the project defines a performance budget, stay within it.
+
+Why and frontend strategies: [performance-research.md](performance-research.md).
+
+---
+
+## 10. Documentation
+
+- **README**: Must document how to run the app locally, run tests, lint, typecheck, build, and deploy. Keep README updated when commands or paths change.
+- **§7 (Project-specific)**: In [AGENTS.md](../AGENTS.md), §7 is the single place for project paths, stack, and commands. When adding or changing routes, schema paths, or test commands, update §7 (and README if they are the source).
