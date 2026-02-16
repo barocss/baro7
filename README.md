@@ -7,7 +7,7 @@ Guidelines and agent roles for building **web applications** with AI agents. bar
 Publishable on [The Agent Skills Directory](https://skills.sh/). Install with:
 
 ```bash
-npx skillsadd barocss/baro7
+npx skills add barocss/baro7
 ```
 
 ## What’s in this repo
