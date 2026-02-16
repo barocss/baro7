@@ -1,6 +1,6 @@
 ---
 name: baro7
-description: Non-breaking UI (layout/scroll/shell intact) and token-optimized: compact core, load docs by scope. Use when building or editing web apps so structure never breaks and agents use fewer tokens.
+description: "Non-breaking UI (layout/scroll/shell intact) and token-optimized: compact core, load docs by scope. Use when building or editing web apps so structure never breaks and agents use fewer tokens."
 ---
 
 # baro7 — Application Development & UI Structure
