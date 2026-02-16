@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build / output
+dist/
+build/
+.next/
+out/
+*.tsbuildinfo
+
+# Logs / cache
+*.log
+npm-debug.log*
+.npm
+.pnpm-debug.log*
+.cache
+.turbo
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Test / coverage
+coverage/
+.nyc_output/
+
+# Optional: keep when scaffolding a real app
+# .env.example
